@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset>
+  
+  <rule ref="rulesets/logging-jakarta-commons.xml/UseCorrectExceptionLogging">
+    <priority>2</priority>
+  </rule>
+  
+  <rule ref="rulesets/logging-java.xml/AvoidPrintStackTrace">
+    <priority>2</priority>
+  </rule>
+  
+  <rule ref="rulesets/logging-java.xml/SystemPrintln">
+    <priority>2</priority>
+  </rule>
+
+<rule ref="rulesets/logging-java.xml/MoreThanOneLogger">
+    <priority>3</priority>
+  </rule>
+
+<rule ref="rulesets/logging-java.xml/LoggerIsNotStaticFinal">
+    <priority>2</priority>
+  </rule>
+  
+</ruleset>

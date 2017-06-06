@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset>
+  
+  <rule ref="rulesets/strictexception.xml/AvoidCatchingNPE">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/strictexception.xml/AvoidRethrowingException">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/strictexception.xml/AvoidThrowingNullPointerException">
+    <priority>3</priority>
+  </rule>
+  
+  <rule ref="rulesets/strictexception.xml/AvoidCatchingThrowable">
+    <priority>2</priority>
+  </rule>
+  
+  <rule ref="rulesets/strictexception.xml/AvoidThrowingRawExceptionTypes">
+    <priority>3</priority>
+  </rule>
+  
+  <rule ref="rulesets/logging-jakarta-commons.xml/UseCorrectExceptionLogging">
+    <priority>3</priority>
+  </rule>
+  
+  <rule ref="rulesets/logging-java.xml/AvoidPrintStackTrace">
+    <priority>3</priority>
+  </rule>
+  
+  <rule ref="rulesets/design.xml/AvoidInstanceofChecksInCatchClause">
+    <priority>4</priority>
+  </rule>
+  <rule ref="rulesets/basic.xml/EmptyFinallyBlock">
+    <priority>2</priority>
+  </rule>
+  
+  <rule ref="rulesets/clone.xml/CloneThrowsCloneNotSupportedException">
+    <priority>3</priority>
+  </rule>
+  
+  
+  <rule ref="rulesets/basic.xml/EmptyTryBlock">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/strictexception.xml/SignatureDeclareThrowsException">
+    <priority>3</priority>
+  </rule>
+ 
+  <rule ref="rulesets/strictexception.xml/ExceptionAsFlowControl">
+    <priority>3</priority>
+  </rule>
+ 
+  <rule ref="rulesets/finalizers.xml/FinalizeDoesNotCallSuperFinalize">
+    <priority>3</priority>
+  </rule>
+  
+  <rule ref="rulesets/logging-java.xml/SystemPrintln">
+    <priority>3</priority>
+  </rule>
+  
+</ruleset>
