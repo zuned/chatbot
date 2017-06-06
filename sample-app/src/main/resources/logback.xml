@@ -1,0 +1,40 @@
+<!-- All rights reserved. hCentive Hackathon. -->
+
+<configuration>
+
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>C:/Work/temp/log/employer.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log.destination}/archive/botmonitor.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date %level [%thread] %X{username} [%file:%line] %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>%date %level [%thread] %X{username} [%file:%line] %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.hcentive" additivity="false" level="INFO">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<logger name="org.springframework" additivity="false" level="INFO">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="FILE" />
+	</root>
+
+</configuration>

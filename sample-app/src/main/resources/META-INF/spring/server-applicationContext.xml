@@ -1,0 +1,65 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- Activates various annotations to be detected in bean classes -->
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.hcentive.hackathon" />
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+
+		<property name="triggers">
+			<list>
+				<ref bean="loggenerationjobtrigger" />
+			</list>
+		</property>
+
+		<property name="quartzProperties">
+			<props>
+				<prop key="org.quartz.scheduler.instanceName">SystemJobScheduler</prop>
+				<prop key="org.quartz.threadPool.threadCount">1</prop>
+				<prop key="org.quartz.scheduler.skipUpdateCheck">true</prop>
+				<prop key="org.quartz.plugin.jobHistory.class">org.quartz.plugins.history.LoggingTriggerHistoryPlugin
+				</prop>
+				<prop key="org.quartz.plugin.jobHistory.triggerCompleteMessage">|C|{0}|{2, date, dd/MM/yyyy HH:mm:ss}|{4, date,
+					dd/MM/yyyy HH:mm:ss}|{3, date, dd/MM/yyyy HH:mm:ss}|{9}|
+				</prop>
+				<prop key="org.quartz.plugin.jobHistory.triggerFiredMessage">|S|{0}|{2, date, dd/MM/yyyy HH:mm:ss}|{4, date,
+					dd/MM/yyyy HH:mm:ss}|{3, date, dd/MM/yyyy HH:mm:ss}|NA|
+				</prop>
+				<prop key="org.quartz.plugin.jobHistory.triggerMisfiredMessage">|M|{0}|{2, date, dd/MM/yyyy HH:mm:ss}|{4, date,
+					dd/MM/yyyy HH:mm:ss}|{3, date, dd/MM/yyyy HH:mm:ss}|NA|
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="loggenerationjobtrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="loggenerationjobDetail" />
+		<property name="cronExpression" value="0 0/1 * * * ?" />
+		<property name="beanName" value="loggenerationjobtriggerBean" />
+	</bean>
+
+	<bean id="loggenerationjobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.hcentive.hackathon.job.LogGenerationJob" />
+		<property name="group" value="quartz-batch" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="jobName" value="hostHealthMonitorJob" />
+			</map>
+		</property>
+	</bean>
+</beans>
